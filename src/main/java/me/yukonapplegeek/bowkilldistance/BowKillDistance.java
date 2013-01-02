@@ -22,7 +22,7 @@ public class BowKillDistance extends JavaPlugin implements Listener {
 
         if (deadPlayer.getLastDamageCause().getCause() == DamageCause.PROJECTILE && deadPlayer.getKiller() instanceof Player) {
             int distance = (int) deadPlayer.getLocation().distance(deadPlayer.getKiller().getLocation());
-            event.setDeathMessage(deadPlayer.getDisplayName()+" was shoot by "+deadPlayer.getKiller().getDisplayName()+" ("+distance+" blocks)");
+            event.setDeathMessage(deadPlayer.getDisplayName()+" was shot by "+deadPlayer.getKiller().getDisplayName()+" ("+distance+" blocks)");
         }
     }
 }

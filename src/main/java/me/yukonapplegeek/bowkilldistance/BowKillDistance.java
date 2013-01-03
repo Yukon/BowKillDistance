@@ -1,6 +1,7 @@
 package me.yukonapplegeek.bowkilldistance;
 
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -66,6 +67,14 @@ public class BowKillDistance extends JavaPlugin implements Listener {
                 player.setMetadata("ShotLocationX", new FixedMetadataValue(this, shotLocation.getX()));
                 player.setMetadata("ShotLocationY", new FixedMetadataValue(this, shotLocation.getY()));
                 player.setMetadata("ShotLocationZ", new FixedMetadataValue(this, shotLocation.getZ()));
+            }
+
+            //Calculate if the shot is a headshot
+            Location playerLocation = player.getLocation();
+            Location damageEntityLocation = damageEntity.getLocation();
+            if (damageEntityLocation.getY() > (playerLocation.getY()+1.52)) {
+                Projectile projectile = (Projectile) event.getDamager();
+                ((CommandSender) projectile.getShooter()).sendMessage("Headshot!");
             }
         }
     }

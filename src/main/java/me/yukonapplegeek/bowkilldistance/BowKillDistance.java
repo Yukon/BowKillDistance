@@ -27,7 +27,6 @@ public class BowKillDistance extends JavaPlugin implements Listener {
         Player player = event.getEntity();
 
         if (player.getLastDamageCause().getCause() == DamageCause.PROJECTILE && player.getKiller() instanceof Player) {
-            this.getLogger().info(player.getMetadata("ShotLocationX").get(0).asString());
             //Checks to make sure the player has the arrow metadata
             if (player.hasMetadata("ShotLocationX") && player.hasMetadata("ShotLocationY") && player.hasMetadata("ShotLocationZ")) {
                 Location shotLocation = new Location(player.getWorld(), player.getMetadata("ShotLocationX").get(0).asDouble(), player.getMetadata("ShotLocationY").get(0).asDouble(), player.getMetadata("ShotLocationZ").get(0).asDouble());

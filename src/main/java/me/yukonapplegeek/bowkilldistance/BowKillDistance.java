@@ -28,6 +28,7 @@ public class BowKillDistance extends JavaPlugin implements Listener {
 
         if (player.getLastDamageCause().getCause() == DamageCause.PROJECTILE && player.getKiller() instanceof Player) {
             this.getLogger().info(player.getMetadata("ShotLocationX").get(0).asString());
+            //Checks to make sure the player has the arrow metadata
             if (player.hasMetadata("ShotLocationX") && player.hasMetadata("ShotLocationY") && player.hasMetadata("ShotLocationZ")) {
                 Location shotLocation = new Location(player.getWorld(), player.getMetadata("ShotLocationX").get(0).asDouble(), player.getMetadata("ShotLocationY").get(0).asDouble(), player.getMetadata("ShotLocationZ").get(0).asDouble());
                 int distance = (int) player.getLocation().distance(shotLocation);
@@ -39,6 +40,7 @@ public class BowKillDistance extends JavaPlugin implements Listener {
     @EventHandler
     public void onBowShoot(EntityShootBowEvent event) {
         if (event.getEntity() instanceof Player) {
+            //Saves the players location to the arrow using metadata
             Location shotLocation = event.getEntity().getLocation();
             event.getProjectile().setMetadata("ShotLocationX", new FixedMetadataValue(this, shotLocation.getX()));
             event.getProjectile().setMetadata("ShotLocationY", new FixedMetadataValue(this, shotLocation.getY()));
@@ -55,10 +57,13 @@ public class BowKillDistance extends JavaPlugin implements Listener {
 
             if (damageEntity.hasMetadata("ShotLocationX") && damageEntity.hasMetadata("ShotLocationY") && damageEntity.hasMetadata("ShotLocationZ")) {
                 if (player.hasMetadata("ShotLocationX") &&  player.hasMetadata("ShotLocationY") &&  player.hasMetadata("ShotLocationZ")) {
+
+                    // Reset the current metadata to prevent huge list
                     player.removeMetadata("ShotLocationX", this);
                     player.removeMetadata("ShotLocationY", this);
                     player.removeMetadata("ShotLocationZ", this);
                 }
+                //Saves the new metadata to the player
                 Location shotLocation = new Location(event.getEntity().getWorld(), damageEntity.getMetadata("ShotLocationX").get(0).asDouble(), damageEntity.getMetadata("ShotLocationY").get(0).asDouble(), damageEntity.getMetadata("ShotLocationZ").get(0).asDouble());
                 player.setMetadata("ShotLocationX", new FixedMetadataValue(this, shotLocation.getX()));
                 player.setMetadata("ShotLocationY", new FixedMetadataValue(this, shotLocation.getY()));

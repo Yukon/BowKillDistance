@@ -45,7 +45,6 @@ public class BowKillDistance extends JavaPlugin implements Listener {
             event.getProjectile().setMetadata("ShotLocationX", new FixedMetadataValue(this, shotLocation.getX()));
             event.getProjectile().setMetadata("ShotLocationY", new FixedMetadataValue(this, shotLocation.getY()));
             event.getProjectile().setMetadata("ShotLocationZ", new FixedMetadataValue(this, shotLocation.getZ()));
-            this.getLogger().info(event.getProjectile().getMetadata("ShotLocationX").get(0).asString());
         }
     }
 

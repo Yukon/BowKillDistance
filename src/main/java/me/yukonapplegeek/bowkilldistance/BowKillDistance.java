@@ -1,7 +1,6 @@
 package me.yukonapplegeek.bowkilldistance;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
